@@ -1,36 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGameContext } from '../contexts/GameContext';
 
 export const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const { enterGame } = useGameContext();
-  const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const carouselItems = [
-    { id: 1, title: 'AI Study Assistant', content: 'Transform images and PDFs into interactive quiz cards using ML text analysis' },
-    { id: 2, title: 'PRF Cryptography Demo', content: 'Interactive exploration and demo of Pseudorandom Functions' },
-    { id: 3, title: 'Matchup', content: 'Multiplayer Interactive Game' },
-    { id: 4, title: 'Catan Recreation', content: 'Under Construction' },
-    { id: 5, title: 'Coming Soon', content: 'Under Construction' },
-    { id: 6, title: 'Coming Soon', content: 'Under Construction' },
-  ];
-
-  const closeDropdowns = () => {
-    setDropdownOpen(null);
-  };
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % carouselItems.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + carouselItems.length) % carouselItems.length);
-  };
 
   const handleProjectClick = (project: string) => {
-    closeDropdowns();
     switch (project) {
       case 'catan':
         // Set the game context and generate a new game ID for Catan
@@ -59,14 +35,21 @@ export const Dashboard: React.FC = () => {
         // Navigate directly to PRF demonstration
         navigate('/cryptography/prf-demonstration');
         break;
+      case 'audio-visualizer':
+        // Navigate to audio visualizer
+        navigate('/audio-visualizer');
+        break;
+      case 'imposter':
+        // Navigate to imposter game
+        navigate('/imposter');
+        break;
       default:
         break;
     }
   };
 
   const handleResumeClick = () => {
-    closeDropdowns();
-    navigate('/ericerdmanresume');
+    window.open('/Eric-Erdman-Resume.pdf', '_blank');
   };
 
   return (
@@ -155,6 +138,43 @@ export const Dashboard: React.FC = () => {
 
       {/* CSS Animations for Wisps */}
       <style>{`
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+          .mobile-header-left {
+            margin-left: 1rem !important;
+          }
+          .mobile-header-right {
+            margin-right: 1rem !important;
+          }
+          .mobile-name {
+            font-size: 1.5rem !important;
+          }
+          .mobile-resume-btn {
+            font-size: 0.95rem !important;
+          }
+          .mobile-main-container {
+            flex-direction: column !important;
+            padding: 1rem !important;
+          }
+          .mobile-center-section {
+            padding-right: 0 !important;
+            padding-top: 2rem !important;
+            min-height: auto !important;
+          }
+          .mobile-carousel-container {
+            margin: 0 !important;
+          }
+          .mobile-projects-box {
+            padding-right: 0 !important;
+            margin-top: 2rem !important;
+            width: 100% !important;
+          }
+          .mobile-projects-inner {
+            min-width: 100% !important;
+            max-width: 100% !important;
+          }
+        }
+
         @keyframes wisp1 {
           0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0; }
           5% { opacity: 0.6; }
@@ -216,21 +236,6 @@ export const Dashboard: React.FC = () => {
         }
       `}</style>
 
-      {/* Click outside to close dropdowns */}
-      {dropdownOpen && (
-        <div
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            zIndex: 999
-          }}
-          onClick={closeDropdowns}
-        />
-      )}
-
       {/* Floating Navigation Elements */}
       <div style={{
         position: 'relative',
@@ -241,14 +246,14 @@ export const Dashboard: React.FC = () => {
         alignItems: 'center'
       }}>
         {/* Left side - Name */}
-        <div style={{
+        <div className="mobile-header-left" style={{
           display: 'flex',
           alignItems: 'center',
           gap: '1rem',
           marginLeft: '6rem',
           flex: '0 0 auto'
         }}>
-          <div style={{
+          <div className="mobile-name" style={{
             fontSize: 'clamp(1.8rem, 2.4vw, 2.4rem)',
             fontWeight: '320',
             color: '#000000',
@@ -258,14 +263,37 @@ export const Dashboard: React.FC = () => {
           </div>
         </div>
 
-        {/* Right side - LinkedIn and Resume */}
-        <div style={{
+        {/* Right side - GitHub, LinkedIn and Resume */}
+        <div className="mobile-header-right" style={{
           display: 'flex',
           alignItems: 'center',
           gap: '0rem',
           marginRight: '3rem',
           flex: '0 0 auto'
         }}>
+          <a
+            href="https://github.com/Eric-Erdman/PortfolioPortal"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              textDecoration: 'none',
+              color: '#333333',
+              padding: '0.5rem',
+              transition: 'all 0.2s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = '#666666';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = '#333333';
+            }}
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </a>
           <a
             href="https://www.linkedin.com/in/eric-erdman-527765276"
             target="_blank"
@@ -291,6 +319,7 @@ export const Dashboard: React.FC = () => {
           </a>
           <button
             onClick={handleResumeClick}
+            className="mobile-resume-btn"
             style={{
               background: 'none',
               border: 'none',
@@ -317,7 +346,7 @@ export const Dashboard: React.FC = () => {
       </div>
 
       {/* Main Content Container */}
-      <div style={{
+      <div className="mobile-main-container" style={{
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
@@ -327,7 +356,7 @@ export const Dashboard: React.FC = () => {
         zIndex: 100
       }}>
         {/* Center section with floating text */}
-        <div style={{
+        <div className="mobile-center-section" style={{
           flex: '1',
           display: 'flex',
           justifyContent: 'center',
@@ -354,7 +383,7 @@ export const Dashboard: React.FC = () => {
               fontSize: 'clamp(0.9rem, 1vw, 1rem)',
               lineHeight: '1.6',
               color: '#333333',
-              margin: '0 0 3rem 0',
+              margin: '0',
               fontWeight: '300',
               letterSpacing: '0.02em'
             }}>
@@ -362,251 +391,16 @@ export const Dashboard: React.FC = () => {
               It's both a space to practice and grow, and an interactive resume where I can share my skills in a 
               more direct and personal way.
             </p>
-
-            {/* 3D Perspective Carousel */}
-            <div style={{
-              position: 'relative',
-              width: '100%',
-              margin: '0 auto',
-              perspective: '1200px',
-              perspectiveOrigin: 'center center'
-            }}>
-              {/* Left Arrow */}
-              <button
-                onClick={prevSlide}
-                style={{
-                  position: 'absolute',
-                  left: '-80px',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  background: 'transparent',
-                  color: '#000000',
-                  border: 'none',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '42px',
-                  fontWeight: '300',
-                  zIndex: 20,
-                  transition: 'all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1)',
-                  padding: '20px',
-                  opacity: 0.7
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = '#666666';
-                  e.currentTarget.style.opacity = '1';
-                  e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = '#000000';
-                  e.currentTarget.style.opacity = '0.7';
-                  e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
-                }}
-              >
-                ‹
-              </button>
-
-              {/* 3D Carousel Stage */}
-              <div style={{
-                position: 'relative',
-                width: '100%',
-                height: '220px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transformStyle: 'preserve-3d'
-              }}>
-                {carouselItems.map((item, index) => {
-                  const getCardPosition = (cardIndex: number) => {
-                    let position = cardIndex - currentSlide;
-                    if (position < -Math.floor(carouselItems.length / 2)) {
-                      position += carouselItems.length;
-                    } else if (position > Math.floor(carouselItems.length / 2)) {
-                      position -= carouselItems.length;
-                    }
-                    return position;
-                  };
-
-                  const position = getCardPosition(index);
-                  const isCenter = position === 0;
-                  const isVisible = Math.abs(position) <= 1;
-
-                  return (
-                    <div
-                      key={item.id}
-                      onClick={() => {
-                        if (isCenter && item.title === 'Catan Recreation') {
-                          handleProjectClick('catan');
-                        } else if (isCenter && item.title === 'AI Study Assistant') {
-                          handleProjectClick('notes-to-quiz');
-                        } else if (isCenter && item.title === 'PRF Cryptography Demo') {
-                          handleProjectClick('prf-demo');
-                        }
-                      }}
-                      style={{
-                        position: 'absolute',
-                        width: '280px',
-                        height: '180px',
-                        transform: `translateX(${position * 300}px) 
-                                   translateZ(${isCenter ? 0 : -100}px) 
-                                   rotateY(${position * -15}deg) 
-                                   scale(${isCenter ? 1 : 0.85})`,
-                        transition: 'all 0.6s cubic-bezier(0.23, 1, 0.32, 1)',
-                        opacity: isVisible ? (isCenter ? 1 : 0.6) : 0,
-                        pointerEvents: isVisible ? 'auto' : 'none',
-                        transformStyle: 'preserve-3d',
-                        zIndex: isCenter ? 10 : 5 - Math.abs(position)
-                      }}
-                      onMouseEnter={(e) => {
-                        if (!isCenter) return;
-                        e.currentTarget.style.transform = `translateX(${position * 300}px) 
-                                                          translateZ(20px) 
-                                                          rotateY(${position * -15}deg) 
-                                                          scale(1.05)`;
-                      }}
-                      onMouseLeave={(e) => {
-                        if (!isCenter) return;
-                        e.currentTarget.style.transform = `translateX(${position * 300}px) 
-                                                          translateZ(0px) 
-                                                          rotateY(${position * -15}deg) 
-                                                          scale(1)`;
-                      }}
-                    >
-                      <div style={{
-                        width: '100%',
-                        height: '100%',
-                        background: isCenter 
-                          ? 'rgba(255, 255, 255, 0.15)' 
-                          : 'rgba(255, 255, 255, 0.08)',
-                        color: '#000000',
-                        border: isCenter 
-                          ? '2px solid #000000' 
-                          : '1px solid rgba(0, 0, 0, 0.4)',
-                        borderRadius: '12px',
-                        padding: '2rem',
-                        textAlign: 'center',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        backdropFilter: isCenter ? 'blur(12px)' : 'blur(6px)',
-                        boxShadow: isCenter 
-                          ? '0 20px 40px rgba(0, 0, 0, 0.1)' 
-                          : '0 8px 16px rgba(0, 0, 0, 0.05)',
-                        transformStyle: 'preserve-3d',
-                        cursor: isCenter ? 'pointer' : 'default'
-                      }}>
-                        <h4 style={{
-                          fontSize: isCenter ? '1.1rem' : '0.95rem',
-                          fontWeight: isCenter ? '500' : '400',
-                          margin: '0 0 0.8rem 0',
-                          letterSpacing: '0.02em',
-                          transition: 'all 0.3s ease',
-                          opacity: isCenter ? 1 : 0.8
-                        }}>
-                          {item.title}
-                        </h4>
-                        <p style={{
-                          fontSize: isCenter ? '0.9rem' : '0.8rem',
-                          margin: '0',
-                          opacity: isCenter ? 0.9 : 0.6,
-                          fontWeight: '300',
-                          lineHeight: 1.4,
-                          transition: 'all 0.3s ease'
-                        }}>
-                          {item.content}
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Right Arrow */}
-              <button
-                onClick={nextSlide}
-                style={{
-                  position: 'absolute',
-                  right: '-80px',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  background: 'transparent',
-                  color: '#000000',
-                  border: 'none',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '42px',
-                  fontWeight: '300',
-                  zIndex: 20,
-                  transition: 'all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1)',
-                  padding: '20px',
-                  opacity: 0.7
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = '#666666';
-                  e.currentTarget.style.opacity = '1';
-                  e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = '#000000';
-                  e.currentTarget.style.opacity = '0.7';
-                  e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
-                }}
-              >
-                ›
-              </button>
-
-              {/* Elegant Progress Indicators */}
-              <div style={{
-                display: 'flex',
-                justifyContent: 'center',
-                marginTop: '2rem',
-                gap: '0.5rem'
-              }}>
-                {carouselItems.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentSlide(index)}
-                    style={{
-                      width: index === currentSlide ? '24px' : '8px',
-                      height: '8px',
-                      borderRadius: '4px',
-                      border: 'none',
-                      background: index === currentSlide 
-                        ? '#000000' 
-                        : 'rgba(0, 0, 0, 0.2)',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1)',
-                      opacity: index === currentSlide ? 1 : 0.5
-                    }}
-                    onMouseEnter={(e) => {
-                      if (index !== currentSlide) {
-                        e.currentTarget.style.background = 'rgba(0, 0, 0, 0.4)';
-                        e.currentTarget.style.opacity = '0.8';
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      if (index !== currentSlide) {
-                        e.currentTarget.style.background = 'rgba(0, 0, 0, 0.2)';
-                        e.currentTarget.style.opacity = '0.5';
-                      }
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
           </div>
         </div>
 
         {/* Right section with projects box */}
-        <div style={{
+        <div className="mobile-projects-box" style={{
           flex: '0 0 auto',
           paddingRight: '4rem'
         }}>
           {/* Projects Box */}
-          <div style={{
+          <div className="mobile-projects-inner" style={{
             background: 'rgba(255, 255, 255, 0.4)',
             border: '2px solid #000000',
             borderRadius: '12px',
@@ -618,7 +412,7 @@ export const Dashboard: React.FC = () => {
           }}>
           <h2 style={{
             fontSize: '1.8rem',
-            fontWeight: '300',
+            fontWeight: '600',
             color: '#000000',
             margin: '0 0 0.5rem 0',
             textAlign: 'center',
@@ -633,8 +427,8 @@ export const Dashboard: React.FC = () => {
             marginBottom: '1.5rem'
           }}>
             <p style={{
-              fontSize: '0.85rem',
-              color: '#666666',
+              fontSize: '0.95rem',
+              color: '#504f4fff',
               margin: '0',
               fontWeight: '300',
               fontStyle: 'italic',
@@ -644,151 +438,232 @@ export const Dashboard: React.FC = () => {
             </p>
           </div>
           
+          {/* Featured Projects Section */}
           <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '1rem'
+            marginBottom: '1.5rem',
+            borderBottom: '2px solid rgba(0, 0, 0, 0.15)',
+            paddingBottom: '1rem'
           }}>
-            {/* AI/ML Showcase Project */}
-            <div style={{
-              padding: '1rem',
-              background: 'rgba(255, 255, 255, 0.2)',
-              transition: 'all 0.2s ease'
+            <h3 style={{
+              fontSize: '1rem',
+              fontWeight: '600',
+              color: '#000000',
+              margin: '0 0 1rem 0',
+              textAlign: 'left',
+              letterSpacing: '0.05em',
+              textTransform: 'uppercase'
             }}>
+              Featured
+            </h3>
+            
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.75rem'
+            }}>
+              {/* AI/ML Showcase - Featured */}
               <button
-                onClick={() => handleProjectClick('aiml')}
+                onClick={() => handleProjectClick('notes-to-quiz')}
                 style={{
-                  background: 'none',
-                  border: 'none',
-                  padding: '0',
+                  background: 'rgba(255, 255, 255, 0.3)',
+                  border: '2px solid #000000',
+                  borderRadius: '8px',
+                  padding: '0.75rem',
                   cursor: 'pointer',
                   textAlign: 'left',
-                  width: '100%'
-                }}
-              >
-                <h3 style={{
-                  fontSize: '1.2rem',
-                  fontWeight: '400',
-                  color: '#000000',
-                  margin: '0 0 0.5rem 0',
-                  transition: 'color 0.2s ease',
-                  letterSpacing: '0.03em'
+                  transition: 'all 0.2s ease'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.color = '#3dc9c4ff';
+                  e.currentTarget.style.background = 'rgba(61, 201, 196, 0.15)';
+                  e.currentTarget.style.transform = 'translateX(5px)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.color = '#000000';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.3)';
+                  e.currentTarget.style.transform = 'translateX(0)';
                 }}
-                >
-                  AI/ML Showcase
-                </h3>
+              >
+                <div style={{
+                  fontSize: '1.1rem',
+                  fontWeight: '700',
+                  color: '#000000',
+                  marginBottom: '0.25rem',
+                  letterSpacing: '0.02em'
+                }}>
+                  AI Study Assistant
+                </div>
+                <div style={{
+                  fontSize: '0.85rem',
+                  fontWeight: '300',
+                  color: '#555555',
+                  letterSpacing: '0.01em'
+                }}>
+                  Transform notes into quiz cards using ML
+                </div>
               </button>
-              <p style={{
-                fontSize: '0.9rem',
-                fontWeight: '300',
-                color: '#555555',
-                margin: '0',
-                lineHeight: '1.5',
-                letterSpacing: '0.02em'
-              }}>
-                Collection of machine learning models and AI demonstrations. Features various training algorithms, neural network visualizations, and AI-powered generative tools.
-              </p>
-            </div>
 
-            {/* Match Up Game Project */}
-            <div style={{
-              padding: '1rem',
-              background: 'rgba(255, 255, 255, 0.2)',
-              transition: 'all 0.2s ease'
-            }}>
+              {/* Match Up Game - Featured */}
               <button
                 onClick={() => handleProjectClick('matchup')}
                 style={{
-                  background: 'none',
-                  border: 'none',
-                  padding: '0',
+                  background: 'rgba(255, 255, 255, 0.3)',
+                  border: '2px solid #000000',
+                  borderRadius: '8px',
+                  padding: '0.75rem',
                   cursor: 'pointer',
                   textAlign: 'left',
-                  width: '100%'
-                }}
-              >
-                <h3 style={{
-                  fontSize: '1.2rem',
-                  fontWeight: '400',
-                  color: '#000000',
-                  margin: '0 0 0.5rem 0',
-                  transition: 'color 0.2s ease',
-                  letterSpacing: '0.03em'
+                  transition: 'all 0.2s ease'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.color = '#3dc9c4ff';
+                  e.currentTarget.style.background = 'rgba(61, 201, 196, 0.15)';
+                  e.currentTarget.style.transform = 'translateX(5px)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.color = '#000000';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.3)';
+                  e.currentTarget.style.transform = 'translateX(0)';
                 }}
-                >
+              >
+                <div style={{
+                  fontSize: '1.1rem',
+                  fontWeight: '700',
+                  color: '#000000',
+                  marginBottom: '0.25rem',
+                  letterSpacing: '0.02em'
+                }}>
                   Match Up Game
-                </h3>
+                </div>
+                <div style={{
+                  fontSize: '0.85rem',
+                  fontWeight: '300',
+                  color: '#555555',
+                  letterSpacing: '0.01em'
+                }}>
+                  Real-time multiplayer memory game
+                </div>
               </button>
-              <p style={{
-                fontSize: '0.9rem',
-                fontWeight: '300',
-                color: '#555555',
-                margin: '0',
-                lineHeight: '1.5',
-                letterSpacing: '0.02em'
-              }}>
-                Multiplayer memory game using React hooks, WebSocket connections, and Firebase. Implements real-time synchronization and player state management.
-              </p>
             </div>
+          </div>
 
-            {/* Cryptography Showcase Project */}
-            <div style={{
-              padding: '1rem',
-              background: 'rgba(255, 255, 255, 0.2)',
-              transition: 'all 0.2s ease'
-            }}>
-              <button
-                onClick={() => handleProjectClick('cryptography')}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  padding: '0',
-                  cursor: 'pointer',
-                  textAlign: 'left',
-                  width: '100%'
-                }}
-              >
-                <h3 style={{
-                  fontSize: '1.2rem',
-                  fontWeight: '400',
-                  color: '#000000',
-                  margin: '0 0 0.5rem 0',
-                  transition: 'color 0.2s ease',
-                  letterSpacing: '0.03em'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = '#3dc9c4ff';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = '#000000';
-                }}
-                >
-                  Cryptography Showcase
-                </h3>
-              </button>
-              <p style={{
-                fontSize: '0.9rem',
-                fontWeight: '300',
-                color: '#555555',
-                margin: '0',
-                lineHeight: '1.5',
-                letterSpacing: '0.02em'
+          {/* All Projects Section */}
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.5rem'
+          }}>
+            {/* Cryptography Showcase */}
+            <button
+              onClick={() => handleProjectClick('cryptography')}
+              style={{
+                background: 'rgba(255, 255, 255, 0.2)',
+                border: '1px solid rgba(0, 0, 0, 0.2)',
+                borderRadius: '6px',
+                padding: '0.6rem',
+                cursor: 'pointer',
+                textAlign: 'left',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.35)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
+              }}
+            >
+              <div style={{
+                fontSize: '0.95rem',
+                fontWeight: '500',
+                color: '#000000',
+                letterSpacing: '0.01em'
               }}>
-                Interactive educational experience exploring cryptographic algorithms. Features step-by-step mathematical breakdowns, security analysis, and live demonstrations of ciphers and cryptographic primitives.
-              </p>
-            </div>
+                Cryptography Showcase <span style={{ fontSize: '0.8rem', color: '#666666', fontWeight: '300' }}>— Interactive crypto algorithm demos</span>
+              </div>
+            </button>
+
+            {/* PRF Demo */}
+            <button
+              onClick={() => handleProjectClick('prf-demo')}
+              style={{
+                background: 'rgba(255, 255, 255, 0.2)',
+                border: '1px solid rgba(0, 0, 0, 0.2)',
+                borderRadius: '6px',
+                padding: '0.6rem',
+                cursor: 'pointer',
+                textAlign: 'left',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.35)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
+              }}
+            >
+              <div style={{
+                fontSize: '0.95rem',
+                fontWeight: '500',
+                color: '#000000',
+                letterSpacing: '0.01em'
+              }}>
+                PRF Demo <span style={{ fontSize: '0.8rem', color: '#666666', fontWeight: '300' }}>— Pseudorandom Function visualization</span>
+              </div>
+            </button>
+
+            {/* Audio Visualizer */}
+            <button
+              onClick={() => handleProjectClick('audio-visualizer')}
+              style={{
+                background: 'rgba(255, 255, 255, 0.2)',
+                border: '1px solid rgba(0, 0, 0, 0.2)',
+                borderRadius: '6px',
+                padding: '0.6rem',
+                cursor: 'pointer',
+                textAlign: 'left',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.35)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
+              }}
+            >
+              <div style={{
+                fontSize: '0.95rem',
+                fontWeight: '500',
+                color: '#000000',
+                letterSpacing: '0.01em'
+              }}>
+                Audio Visualizer <span style={{ fontSize: '0.8rem', color: '#666666', fontWeight: '300' }}>— Reactive audio frequency visuals</span>
+              </div>
+            </button>
+
+            {/* Imposter */}
+            <button
+              onClick={() => handleProjectClick('imposter')}
+              style={{
+                background: 'rgba(255, 255, 255, 0.2)',
+                border: '1px solid rgba(0, 0, 0, 0.2)',
+                borderRadius: '6px',
+                padding: '0.6rem',
+                cursor: 'pointer',
+                textAlign: 'left',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.35)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
+              }}
+            >
+              <div style={{
+                fontSize: '0.95rem',
+                fontWeight: '500',
+                color: '#000000',
+                letterSpacing: '0.01em'
+              }}>
+                Imposter <span style={{ fontSize: '0.8rem', color: '#666666', fontWeight: '300' }}>— Social deduction multiplayer game</span>
+              </div>
+            </button>           
           </div>
         </div>
         </div>
