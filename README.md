@@ -4,7 +4,7 @@ An interactive full-stack web application showcasing AI/ML tools, cryptographic 
 
 ##  Live Demo
 
-[View Live Site](https://your-vercel-url.vercel.app) *(Update with your Vercel URL)*
+[View Live Site](https://ee-portal-bice.vercel.app/)
 
 ##  Features
 
@@ -65,103 +65,6 @@ Interactive educational showcases exploring cryptographic algorithms:
 - 3 cryptographic algorithm implementations (1,670+ lines)
 - Real-time database supporting 8+ concurrent users
 
-##  Getting Started
-
-### Prerequisites
-- Node.js (v18 or higher)
-- npm or yarn
-- Firebase account (for real-time features)
-
-### Installation
-
-1. **Clone the repository**
-   `ash
-   git clone https://github.com/Eric-Erdman/GamePortal.git
-   cd GamePortal
-   `
-
-2. **Install dependencies**
-   `ash
-   npm install
-   `
-
-3. **Set up environment variables**
-   
-   Create a .env.local file in the root directory:
-   `ash
-   cp .env.example .env.local
-   `
-   
-   Then edit .env.local and add your Firebase configuration values.
-   Get these from your [Firebase Console](https://console.firebase.google.com/) under Project Settings > General > Your apps.
-
-4. **Run the development server**
-   `ash
-   npm run dev
-   `
-   
-   Open [http://localhost:5173](http://localhost:5173) in your browser.
-
-### Firebase Setup
-
-1. Create a new Firebase project at [Firebase Console](https://console.firebase.google.com/)
-2. Enable Realtime Database
-3. Set up Security Rules for your database
-4. Copy your Firebase config values to .env.local
-
-**Recommended Development Security Rules:**
-`json
-{
-  "rules": {
-    "matchup-lobbies": {
-      ".read": true,
-      ".write": true
-    }
-  }
-}
-`
- **Important:** Implement proper authentication and stricter rules for production!
-
-##  Build & Deploy
-
-### Build for production
-`ash
-npm run build
-`
-
-### Preview production build locally
-`ash
-npm run preview
-`
-
-### Deploy to Vercel
-1. Connect your GitHub repository to Vercel
-2. Set environment variables in Vercel dashboard
-3. Deploy automatically on push to main branch
-
-##  Project Structure
-
-`
-GamePortal/
- public/
-    game-icons/           # Game assets
- src/
-    pages/
-       AIML/             # AI/ML showcase
-          NotesToQuiz/  # OCR quiz generator
-       Cryptography/     # Crypto demonstrations
-       MatchUp/          # Multiplayer game
-       Catan/            # Board game recreation
-       Common/           # Shared components
-       FullResume/       # Resume page
-    contexts/             # React contexts
-    utils/                # Utility functions
-    firebase.ts           # Firebase configuration
-    App.tsx               # Main app component
- .env.local                # Your environment variables (gitignored)
- .env.example              # Environment template (committed)
- vercel.json               # Vercel configuration
-`
 
 ##  Security
 
