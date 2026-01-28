@@ -17,11 +17,11 @@ export const CattleSalesVisualization: React.FC<VisualizationProps> = ({ selecte
   const fetchData = async () => {
     try {
       setLoading(true);
-      // Load data from pre-processed JSON files
+      // Load data from pre-processed JSON files in public folder
       const [cattleResponse, taxResponse, operationsResponse] = await Promise.all([
-        fetch('/src/data/processed/cattle_sales.json'),
-        fetch('/src/data/processed/property_taxes.json'),
-        fetch('/src/data/processed/number_of_operations.json')
+        fetch('/data/processed/cattle_sales.json'),
+        fetch('/data/processed/property_taxes.json'),
+        fetch('/data/processed/number_of_operations.json')
       ]);
       
       if (!cattleResponse.ok || !taxResponse.ok || !operationsResponse.ok) {
