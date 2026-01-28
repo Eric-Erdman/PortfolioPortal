@@ -1,0 +1,47 @@
+[
+  {
+    "YEAR": 2022,
+    "DOMAINCAT_DESC": "AREA OPERATED: (1.0 TO 9.9 ACRES)",
+    "VALUE": 5808
+  },
+  {
+    "YEAR": 2022,
+    "DOMAINCAT_DESC": "AREA OPERATED: (10.0 TO 49.9 ACRES)",
+    "VALUE": 15793
+  },
+  {
+    "YEAR": 2022,
+    "DOMAINCAT_DESC": "AREA OPERATED: (2,000 OR MORE ACRES)",
+    "VALUE": 841
+  },
+  {
+    "YEAR": 2017,
+    "DOMAINCAT_DESC": "AREA OPERATED: (1.0 TO 9.9 ACRES)",
+    "VALUE": 5923
+  },
+  {
+    "YEAR": 2017,
+    "DOMAINCAT_DESC": "AREA OPERATED: (10.0 TO 49.9 ACRES)",
+    "VALUE": 16919
+  },
+  {
+    "YEAR": 2017,
+    "DOMAINCAT_DESC": "AREA OPERATED: (2,000 OR MORE ACRES)",
+    "VALUE": 721
+  },
+  {
+    "YEAR": 2012,
+    "DOMAINCAT_DESC": "AREA OPERATED: (1.0 TO 9.9 ACRES)",
+    "VALUE": 4603
+  },
+  {
+    "YEAR": 2012,
+    "DOMAINCAT_DESC": "AREA OPERATED: (10.0 TO 49.9 ACRES)",
+    "VALUE": 17825
+  },
+  {
+    "YEAR": 2012,
+    "DOMAINCAT_DESC": "AREA OPERATED: (2,000 OR MORE ACRES)",
+    "VALUE": 671
+  }
+]

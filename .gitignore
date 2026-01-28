@@ -39,3 +39,8 @@ Thumbs.db
 *.njsproj
 *.sln
 *.sw?
+
+
+# Large data files
+src/data/raw/*
+src/db/agriculture.db

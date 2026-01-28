@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGameContext } from '../contexts/GameContext';
-import LiveNBACourt from '../contexts/LiveNBACourt';
+import { CattleSalesVisualization } from './Visualizations';
 
 export const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const { enterGame } = useGameContext();
   const [isBottomView, setIsBottomView] = useState(false);
+  const [selectedVisualization, setSelectedVisualization] = useState<'custom1' | 'custom2' | 'custom3'>('custom1');
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleProjectClick = (project: string) => {
@@ -123,11 +124,16 @@ export const Dashboard: React.FC = () => {
           width: '120px',
           height: '120px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(0, 122, 51, 0.35) 0%, rgba(0, 122, 51, 0.12) 30%, transparent 70%)',
+          background: selectedVisualization === 'custom1' 
+            ? 'radial-gradient(circle, rgba(255, 144, 155, 0.35) 0%, rgba(255, 144, 155, 0.12) 30%, transparent 70%)'
+            : selectedVisualization === 'custom2'
+            ? 'radial-gradient(circle, rgba(137, 204, 255, 0.35) 0%, rgba(137, 204, 255, 0.12) 30%, transparent 70%)'
+            : 'radial-gradient(circle, rgba(131, 252, 155, 0.35) 0%, rgba(131, 252, 155, 0.12) 30%, transparent 70%)',
           filter: 'blur(8px)',
           animation: 'wisp1 45s infinite linear',
           left: '-120px',
-          top: '15%'
+          top: '15%',
+          transition: 'background 0.5s ease'
         }} />
         
         {/* Wisp 2 */}
@@ -136,11 +142,16 @@ export const Dashboard: React.FC = () => {
           width: '80px',
           height: '80px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(0, 131, 72, 0.4) 0%, rgba(0, 131, 72, 0.15) 40%, transparent 70%)',
+          background: selectedVisualization === 'custom1'
+            ? 'radial-gradient(circle, rgba(255, 144, 155, 0.4) 0%, rgba(255, 144, 155, 0.15) 40%, transparent 70%)'
+            : selectedVisualization === 'custom2'
+            ? 'radial-gradient(circle, rgba(137, 204, 255, 0.4) 0%, rgba(137, 204, 255, 0.15) 40%, transparent 70%)'
+            : 'radial-gradient(circle, rgba(131, 252, 155, 0.4) 0%, rgba(131, 252, 155, 0.15) 40%, transparent 70%)',
           filter: 'blur(6px)',
           animation: 'wisp2 60s infinite linear',
           right: '-80px',
-          top: '70%'
+          top: '70%',
+          transition: 'background 0.5s ease'
         }} />
         
         {/* Wisp 3 */}
@@ -149,11 +160,16 @@ export const Dashboard: React.FC = () => {
           width: '100px',
           height: '100px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(0, 122, 51, 0.38) 0%, rgba(0, 122, 51, 0.14) 35%, transparent 70%)',
+          background: selectedVisualization === 'custom1'
+            ? 'radial-gradient(circle, rgba(255, 144, 155, 0.38) 0%, rgba(255, 144, 155, 0.14) 35%, transparent 70%)'
+            : selectedVisualization === 'custom2'
+            ? 'radial-gradient(circle, rgba(137, 204, 255, 0.38) 0%, rgba(137, 204, 255, 0.14) 35%, transparent 70%)'
+            : 'radial-gradient(circle, rgba(131, 252, 155, 0.38) 0%, rgba(131, 252, 155, 0.14) 35%, transparent 70%)',
           filter: 'blur(7px)',
           animation: 'wisp3 55s infinite linear',
           left: '60%',
-          bottom: '-100px'
+          bottom: '-100px',
+          transition: 'background 0.5s ease'
         }} />
         
         {/* Wisp 4 */}
@@ -162,11 +178,16 @@ export const Dashboard: React.FC = () => {
           width: '60px',
           height: '60px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(0, 131, 72, 0.45) 0%, rgba(0, 131, 72, 0.18) 45%, transparent 70%)',
+          background: selectedVisualization === 'custom1'
+            ? 'radial-gradient(circle, rgba(255, 144, 155, 0.45) 0%, rgba(255, 144, 155, 0.18) 45%, transparent 70%)'
+            : selectedVisualization === 'custom2'
+            ? 'radial-gradient(circle, rgba(137, 204, 255, 0.45) 0%, rgba(137, 204, 255, 0.18) 45%, transparent 70%)'
+            : 'radial-gradient(circle, rgba(131, 252, 155, 0.45) 0%, rgba(131, 252, 155, 0.18) 45%, transparent 70%)',
           filter: 'blur(5px)',
           animation: 'wisp4 40s infinite linear',
           right: '30%',
-          top: '-60px'
+          top: '-60px',
+          transition: 'background 0.5s ease'
         }} />
         
         {/* Wisp 5 */}
@@ -175,15 +196,20 @@ export const Dashboard: React.FC = () => {
           width: '90px',
           height: '90px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(0, 122, 51, 0.42) 0%, rgba(0, 122, 51, 0.16) 45%, transparent 70%)',
+          background: selectedVisualization === 'custom1'
+            ? 'radial-gradient(circle, rgba(255, 144, 155, 0.42) 0%, rgba(255, 144, 155, 0.16) 45%, transparent 70%)'
+            : selectedVisualization === 'custom2'
+            ? 'radial-gradient(circle, rgba(137, 204, 255, 0.42) 0%, rgba(137, 204, 255, 0.16) 45%, transparent 70%)'
+            : 'radial-gradient(circle, rgba(131, 252, 155, 0.42) 0%, rgba(131, 252, 155, 0.16) 45%, transparent 70%)',
           filter: 'blur(6px)',
           animation: 'wisp5 50s infinite linear', 
           left: '-90px',
-          top: '85%'
+          top: '85%',
+          transition: 'background 0.5s ease'
         }} />
       </div>
 
-      {/* Large Green Diagonal Line in Bottom Left */}
+      {/* Large Diagonal Line in Bottom Left */}
       <div style={{
         position: 'absolute',
         top: '78vh',
@@ -193,19 +219,21 @@ export const Dashboard: React.FC = () => {
         zIndex: 2,
         pointerEvents: 'none'
       }}>
-        {/* Green diagonal stripe */}
         <div style={{
           position: 'absolute',
-          //bottom: '-30%',
-          //left: '-75%',
           width: '100%',
           height: '100%',
-          background: '#028b3bc4',
+          background: selectedVisualization === 'custom1'
+            ? '#ff909bff'
+            : selectedVisualization === 'custom2'
+            ? '#89ccffff'
+            : '#83fc9bff',
           transform: 'rotate(45deg)',
+          transition: 'background 0.5s ease'
         }} />
       </div>
 
-      {/* Second Green Diagonal Line - customize position as needed */}
+      {/* Second Diagonal Line - customize position as needed */}
       <div style={{
         position: 'absolute',
         top: '114vh',
@@ -215,13 +243,17 @@ export const Dashboard: React.FC = () => {
         zIndex: 2,
         pointerEvents: 'none'
       }}>
-        {/* Green diagonal stripe */}
         <div style={{
           position: 'absolute',
           width: '100%',
           height: '100%',
-          background: '#028b3bc4',
+          background: selectedVisualization === 'custom1'
+            ? '#ff909bff'
+            : selectedVisualization === 'custom2'
+            ? '#89ccffff'
+            : '#83fc9bff',
           transform: 'rotate(-45deg)',
+          transition: 'background 0.5s ease'
         }} />
       </div>
       {/*Title Text along Green diagonal Stripe*/}
@@ -233,16 +265,6 @@ export const Dashboard: React.FC = () => {
         pointerEvents: 'none',
         textAlign: 'center'
       }}>
-        <h1 style={{
-          fontSize: 'clamp(3.5rem, 5vw, 2.8rem)',
-          fontWeight: '700',
-          color: 'transparent',
-          WebkitTextStroke: '2px #000000',
-          margin: 0,  
-          letterSpacing: '0em'
-        } as React.CSSProperties}> 
-          Visualizing Data into Actionable Insights
-        </h1>
       </div>
 
       {/* Down Arrow Button */}
@@ -271,7 +293,7 @@ export const Dashboard: React.FC = () => {
         <div style={{
           fontSize: '1.1em',
           fontWeight: '600',
-          color: '#007A33',
+          color: '#000000',
           letterSpacing: '0.05em',
           textShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
         }}>
@@ -282,7 +304,7 @@ export const Dashboard: React.FC = () => {
           height="40" 
           viewBox="0 0 24 24" 
           fill="none" 
-          stroke="#007A33" 
+          stroke="#000000" 
           strokeWidth="2.5"
           strokeLinecap="round" 
           strokeLinejoin="round"
@@ -843,6 +865,53 @@ export const Dashboard: React.FC = () => {
         alignItems: 'center',
         padding: '2rem'
       }}>
+        {/* Diagonal Lines - Bottom View */}
+        <div style={{
+          position: 'absolute',
+          top: '78vh',
+          right: '75vw',
+          width: '31vw',
+          height: '8vh',
+          zIndex: 2,
+          pointerEvents: 'none'
+        }}>
+          <div style={{
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            background: selectedVisualization === 'custom1'
+              ? '#ff909bff'
+              : selectedVisualization === 'custom2'
+              ? '#89ccffff'
+              : '#83fc9bff',
+            transform: 'rotate(45deg)',
+            transition: 'background 0.5s ease'
+          }} />
+        </div>
+
+        <div style={{
+          position: 'absolute',
+          top: '114vh',
+          right: '75vw',
+          width: '31vw',
+          height: '8vh',
+          zIndex: 2,
+          pointerEvents: 'none'
+        }}>
+          <div style={{
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            background: selectedVisualization === 'custom1'
+              ? '#ff909bff'
+              : selectedVisualization === 'custom2'
+              ? '#89ccffff'
+              : '#83fc9bff',
+            transform: 'rotate(-45deg)',
+            transition: 'background 0.5s ease'
+          }} />
+        </div>
+
         {/* Up Arrow Button */}
         <div 
           onClick={scrollToTop}
@@ -871,7 +940,7 @@ export const Dashboard: React.FC = () => {
             height="40" 
             viewBox="0 0 24 24" 
             fill="none" 
-            stroke="#007A33" 
+            stroke="#000000" 
             strokeWidth="2.5"
             strokeLinecap="round" 
             strokeLinejoin="round"
@@ -881,14 +950,134 @@ export const Dashboard: React.FC = () => {
           <div style={{
             fontSize: '1.1rem',
             fontWeight: '600',
-            color: '#007A33',
+            color: '#000000',
             letterSpacing: '0.05em'
           }}>
             Return to Top
           </div>
         </div>
 
-        {/* NBA Court centered */}
+        {/* Left side - Visualization selector buttons */}
+        <div style={{
+          position: 'absolute',
+          left: '8rem',
+          top: '50%',
+          transform: 'translateY(-50%)',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '1.5rem',
+          zIndex: 10
+        }}>
+          <button
+            onClick={() => setSelectedVisualization('custom1')}
+            style={{
+              width: '280px',
+              height: '90px',
+              borderRadius: '40px',
+              border: selectedVisualization === 'custom1' ? '4px solid #ffffff' : 'none',
+              background: '#ff909bff',
+              fontSize: '2rem',
+              fontWeight: '700',
+              fontFamily: '"Comic Sans MS", "Chalkboard SE", "Comic Neue", cursive',
+              color: '#ffffffff',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              boxShadow: selectedVisualization === 'custom1' 
+                ? '0 6px 25px rgba(255, 179, 186, 0.6)' 
+                : '0 4px 15px rgba(255, 179, 186, 0.4)',
+              letterSpacing: '0.05em',
+              transform: selectedVisualization === 'custom1' ? 'scale(1.05)' : 'scale(1)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-3px) scale(1.05)';
+              e.currentTarget.style.boxShadow = '0 6px 20px rgba(255, 179, 186, 0.5)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = selectedVisualization === 'custom1' 
+                ? 'translateY(0) scale(1.05)' 
+                : 'translateY(0) scale(1)';
+              e.currentTarget.style.boxShadow = selectedVisualization === 'custom1'
+                ? '0 6px 25px rgba(255, 179, 186, 0.6)'
+                : '0 4px 15px rgba(255, 179, 186, 0.4)';
+            }}
+          >
+            Agriculture
+          </button>
+          
+          <button
+            onClick={() => setSelectedVisualization('custom2')}
+            style={{
+              width: '280px',
+              height: '90px',
+              borderRadius: '40px',
+              border: selectedVisualization === 'custom2' ? '4px solid #ffffff' : 'none',
+              background: '#89ccffff',
+              fontSize: '2rem',
+              fontWeight: '700',
+              fontFamily: '"Comic Sans MS", "Chalkboard SE", "Comic Neue", cursive',
+              color: '#ffffffff',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              boxShadow: selectedVisualization === 'custom2'
+                ? '0 6px 25px rgba(186, 225, 255, 0.6)'
+                : '0 4px 15px rgba(186, 225, 255, 0.4)',
+              letterSpacing: '0.05em',
+              transform: selectedVisualization === 'custom2' ? 'scale(1.05)' : 'scale(1)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-3px) scale(1.05)';
+              e.currentTarget.style.boxShadow = '0 6px 20px rgba(186, 225, 255, 0.5)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = selectedVisualization === 'custom2'
+                ? 'translateY(0) scale(1.05)'
+                : 'translateY(0) scale(1)';
+              e.currentTarget.style.boxShadow = selectedVisualization === 'custom2'
+                ? '0 6px 25px rgba(186, 225, 255, 0.6)'
+                : '0 4px 15px rgba(186, 225, 255, 0.4)';
+            }}
+          >
+            NBA Stats
+          </button>
+          
+          <button
+            onClick={() => setSelectedVisualization('custom3')}
+            style={{
+              width: '280px',
+              height: '90px',
+              borderRadius: '40px',
+              border: selectedVisualization === 'custom3' ? '4px solid #ffffff' : 'none',
+              background: '#83fc9bff',
+              fontSize: '2rem',
+              fontWeight: '700',
+              fontFamily: '"Comic Sans MS", "Chalkboard SE", "Comic Neue", cursive',
+              color: '#ffffffff',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              boxShadow: selectedVisualization === 'custom3'
+                ? '0 6px 25px rgba(191, 255, 204, 0.6)'
+                : '0 4px 15px rgba(191, 255, 204, 0.4)',
+              letterSpacing: '0.05em',
+              transform: selectedVisualization === 'custom3' ? 'scale(1.05)' : 'scale(1)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-3px) scale(1.05)';
+              e.currentTarget.style.boxShadow = '0 6px 20px rgba(191, 255, 204, 0.5)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = selectedVisualization === 'custom3'
+                ? 'translateY(0) scale(1.05)'
+                : 'translateY(0) scale(1)';
+              e.currentTarget.style.boxShadow = selectedVisualization === 'custom3'
+                ? '0 6px 25px rgba(191, 255, 204, 0.6)'
+                : '0 4px 15px rgba(191, 255, 204, 0.4)';
+            }}
+          >
+            Market Trends
+          </button>
+        </div>
+        
+        {/* Visualization content area */}
         <div style={{
           display: 'flex',
           justifyContent: 'center',
@@ -896,7 +1085,63 @@ export const Dashboard: React.FC = () => {
           width: '100%',
           maxWidth: '90vw'
         }}>
-          <LiveNBACourt width={800} />
+          {/* Visualization Rectangle - Easily adjustable size */}
+          <div style={{
+            width: '65vw',  // ADJUST THIS: Change width (e.g., '70vw', '800px')
+            height: '55vh', // ADJUST THIS: Change height (e.g., '60vh', '600px')
+            borderRadius: '20px',
+            background: selectedVisualization === 'custom1' 
+              ? '#ff909bff' 
+              : selectedVisualization === 'custom2'
+              ? '#89ccffff'
+              : '#83fc9bff',
+            boxShadow: selectedVisualization === 'custom1'
+              ? '0 8px 30px rgba(255, 144, 155, 0.4)'
+              : selectedVisualization === 'custom2'
+              ? '0 8px 30px rgba(137, 204, 255, 0.4)'
+              : '0 8px 30px rgba(131, 252, 155, 0.4)',
+            transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            color: '#ffffff',
+            fontSize: '1.5rem',
+            fontWeight: '600',
+            fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+          }}>
+            {/* Render visualization based on selection */}
+            {selectedVisualization === 'custom1' && (
+              <CattleSalesVisualization selectedColor={selectedVisualization} />
+            )}
+            {selectedVisualization === 'custom2' && (
+              <div style={{
+                width: '100%',
+                height: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                color: '#ffffff',
+                fontSize: '1.5rem',
+                fontWeight: '600'
+              }}>
+                Custom 2 Visualization - Coming Soon
+              </div>
+            )}
+            {selectedVisualization === 'custom3' && (
+              <div style={{
+                width: '100%',
+                height: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                color: '#ffffff',
+                fontSize: '1.5rem',
+                fontWeight: '600'
+              }}>
+                Custom 3 Visualization - Coming Soon
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
