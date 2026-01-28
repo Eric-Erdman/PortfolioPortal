@@ -188,7 +188,7 @@ export const NotesToQuizMain: React.FC<NotesToQuizProps> = ({ onBack }) => {
                 e.currentTarget.style.color = '#007bff';
               }}
             >
-              🧠 Training Manager
+              Training Manager
             </button>
             <button
               onClick={onBack}
