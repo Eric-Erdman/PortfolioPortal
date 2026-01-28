@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGameContext } from '../contexts/GameContext';
+import LiveNBACourt from '../contexts/LiveNBACourt';
 
 export const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const { enterGame } = useGameContext();
+  const [isBottomView, setIsBottomView] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const handleProjectClick = (project: string) => {
     switch (project) {
@@ -52,14 +55,58 @@ export const Dashboard: React.FC = () => {
     window.open('/Eric-Erdman-Resume.pdf', '_blank');
   };
 
+  const scrollToBottom = () => {
+    setIsBottomView(true);
+  };
+
+  const scrollToTop = () => {
+    setIsBottomView(false);
+  };
+
+  // Handle wheel scroll
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      if (e.deltaY > 50 && !isBottomView) {
+        e.preventDefault();
+        scrollToBottom();
+      } else if (e.deltaY < -50 && isBottomView) {
+        e.preventDefault();
+        scrollToTop();
+      }
+    };
+
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener('wheel', handleWheel, { passive: false });
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener('wheel', handleWheel);
+      }
+    };
+  }, [isBottomView]);
+
   return (
-    <div style={{
+    <div ref={containerRef} style={{
       minHeight: '100vh',
       background: '#ffffff',
       position: 'relative',
       fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      height: '100vh'
     }}>
+      {/* Main Dashboard View - slides up when bottom view is active */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100vh',
+        transform: isBottomView ? 'translateY(-100vh)' : 'translateY(0)',
+        transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+        zIndex: 10
+      }}>
       {/* Animated Glowing Wisps Background */}
       <div style={{
         position: 'absolute',
@@ -76,7 +123,7 @@ export const Dashboard: React.FC = () => {
           width: '120px',
           height: '120px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(156, 163, 175, 0.3) 0%, rgba(156, 163, 175, 0.1) 30%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(0, 122, 51, 0.35) 0%, rgba(0, 122, 51, 0.12) 30%, transparent 70%)',
           filter: 'blur(8px)',
           animation: 'wisp1 45s infinite linear',
           left: '-120px',
@@ -89,7 +136,7 @@ export const Dashboard: React.FC = () => {
           width: '80px',
           height: '80px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(107, 114, 128, 0.4) 0%, rgba(107, 114, 128, 0.15) 40%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(0, 131, 72, 0.4) 0%, rgba(0, 131, 72, 0.15) 40%, transparent 70%)',
           filter: 'blur(6px)',
           animation: 'wisp2 60s infinite linear',
           right: '-80px',
@@ -102,7 +149,7 @@ export const Dashboard: React.FC = () => {
           width: '100px',
           height: '100px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(75, 85, 99, 0.35) 0%, rgba(75, 85, 99, 0.12) 35%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(0, 122, 51, 0.38) 0%, rgba(0, 122, 51, 0.14) 35%, transparent 70%)',
           filter: 'blur(7px)',
           animation: 'wisp3 55s infinite linear',
           left: '60%',
@@ -115,7 +162,7 @@ export const Dashboard: React.FC = () => {
           width: '60px',
           height: '60px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(156, 163, 175, 0.45) 0%, rgba(156, 163, 175, 0.18) 45%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(0, 131, 72, 0.45) 0%, rgba(0, 131, 72, 0.18) 45%, transparent 70%)',
           filter: 'blur(5px)',
           animation: 'wisp4 40s infinite linear',
           right: '30%',
@@ -128,12 +175,120 @@ export const Dashboard: React.FC = () => {
           width: '90px',
           height: '90px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(107, 114, 128, 0.3) 0%, rgba(107, 114, 128, 0.1) 30%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(0, 122, 51, 0.42) 0%, rgba(0, 122, 51, 0.16) 45%, transparent 70%)',
           filter: 'blur(6px)',
-          animation: 'wisp5 50s infinite linear',
+          animation: 'wisp5 50s infinite linear', 
           left: '-90px',
           top: '85%'
         }} />
+      </div>
+
+      {/* Large Green Diagonal Line in Bottom Left */}
+      <div style={{
+        position: 'absolute',
+        top: '78vh',
+        right: '75vw',
+        width: '31vw',
+        height: '8vh',
+        zIndex: 2,
+        pointerEvents: 'none'
+      }}>
+        {/* Green diagonal stripe */}
+        <div style={{
+          position: 'absolute',
+          //bottom: '-30%',
+          //left: '-75%',
+          width: '100%',
+          height: '100%',
+          background: '#028b3bc4',
+          transform: 'rotate(45deg)',
+        }} />
+      </div>
+
+      {/* Second Green Diagonal Line - customize position as needed */}
+      <div style={{
+        position: 'absolute',
+        top: '114vh',
+        right: '75vw',
+        width: '31vw',
+        height: '8vh',
+        zIndex: 2,
+        pointerEvents: 'none'
+      }}>
+        {/* Green diagonal stripe */}
+        <div style={{
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          background: '#028b3bc4',
+          transform: 'rotate(-45deg)',
+        }} />
+      </div>
+      {/*Title Text along Green diagonal Stripe*/}
+      <div style={{
+        position: 'absolute',
+        top: '132vh',
+        right: '69vw',
+        zIndex: 3,
+        pointerEvents: 'none',
+        textAlign: 'center'
+      }}>
+        <h1 style={{
+          fontSize: 'clamp(3.5rem, 5vw, 2.8rem)',
+          fontWeight: '700',
+          color: 'transparent',
+          WebkitTextStroke: '2px #000000',
+          margin: 0,  
+          letterSpacing: '0em'
+        } as React.CSSProperties}> 
+          Visualizing Data into Actionable Insights
+        </h1>
+      </div>
+
+      {/* Down Arrow Button */}
+      <div 
+        onClick={scrollToBottom}
+        style={{
+          position: 'absolute',
+          bottom: '2rem',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 1001,
+          cursor: 'pointer',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '0.5rem',
+          transition: 'all 0.3s ease'
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = 'translateX(-50%) translateY(5px)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = 'translateX(-50%) translateY(0)';
+        }}
+      >
+        <div style={{
+          fontSize: '1.1em',
+          fontWeight: '600',
+          color: '#007A33',
+          letterSpacing: '0.05em',
+          textShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+        }}>
+          Data Visualizations
+        </div>
+        <svg 
+          width="40" 
+          height="40" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke="#007A33" 
+          strokeWidth="2.5"
+          strokeLinecap="round" 
+          strokeLinejoin="round"
+        >
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
       </div>
 
       {/* CSS Animations for Wisps */}
@@ -666,6 +821,82 @@ export const Dashboard: React.FC = () => {
             </button>           
           </div>
         </div>
+        </div>
+      </div>
+      </div>
+      {/* Close main dashboard view wrapper */}
+
+      {/* Bottom Data Visualizations View - slides in from bottom */}
+      <div style={{
+        position: 'absolute',
+        top: '100vh',
+        left: 0,
+        width: '100%',
+        height: '100vh',
+        background: '#ffffffff',
+        transform: isBottomView ? 'translateY(-100vh)' : 'translateY(0)',
+        transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+        zIndex: 5,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '2rem'
+      }}>
+        {/* Up Arrow Button */}
+        <div 
+          onClick={scrollToTop}
+          style={{
+            position: 'absolute',
+            top: '2rem',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            cursor: 'pointer',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '0.5rem',
+            transition: 'all 0.3s ease',
+            zIndex: 10
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateX(-50%) translateY(-5px)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateX(-50%) translateY(0)';
+          }}
+        >
+          <svg 
+            width="40" 
+            height="40" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="#007A33" 
+            strokeWidth="2.5"
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+          >
+            <polyline points="18 15 12 9 6 15"></polyline>
+          </svg>
+          <div style={{
+            fontSize: '1.1rem',
+            fontWeight: '600',
+            color: '#007A33',
+            letterSpacing: '0.05em'
+          }}>
+            Return to Top
+          </div>
+        </div>
+
+        {/* NBA Court centered */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '100%',
+          maxWidth: '90vw'
+        }}>
+          <LiveNBACourt width={800} />
         </div>
       </div>
     </div>
