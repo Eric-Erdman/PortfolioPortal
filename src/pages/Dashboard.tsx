@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGameContext } from '../contexts/GameContext';
 import { CattleSalesVisualization } from './Visualizations';
+import { OversoldValueStocks } from './Visualizations/OversoldValueStocks';
 
 export const Dashboard: React.FC = () => {
   const navigate = useNavigate();
@@ -971,19 +972,19 @@ export const Dashboard: React.FC = () => {
           <button
             onClick={() => setSelectedVisualization('custom1')}
             style={{
-              width: '280px',
-              height: '90px',
-              borderRadius: '40px',
+              width: 'clamp(180px, 20vw, 280px)',
+              height: 'clamp(60px, 8vh, 90px)',
+              borderRadius: 'clamp(25px, 3vw, 40px)',
               border: selectedVisualization === 'custom1' ? '4px solid #ffffff' : 'none',
               background: '#ff909bff',
-              fontSize: '2rem',
+              fontSize: 'clamp(1.2rem, 2vw, 2rem)',
               fontWeight: '700',
               fontFamily: '"Comic Sans MS", "Chalkboard SE", "Comic Neue", cursive',
               color: '#ffffffff',
               cursor: 'pointer',
               transition: 'all 0.3s ease',
-              boxShadow: selectedVisualization === 'custom1' 
-                ? '0 6px 25px rgba(255, 179, 186, 0.6)' 
+              boxShadow: selectedVisualization === 'custom1'
+                ? '0 6px 25px rgba(255, 179, 186, 0.6)'
                 : '0 4px 15px rgba(255, 179, 186, 0.4)',
               letterSpacing: '0.05em',
               transform: selectedVisualization === 'custom1' ? 'scale(1.05)' : 'scale(1)'
@@ -1007,12 +1008,12 @@ export const Dashboard: React.FC = () => {
           <button
             onClick={() => setSelectedVisualization('custom2')}
             style={{
-              width: '280px',
-              height: '90px',
-              borderRadius: '40px',
+              width: 'clamp(180px, 20vw, 280px)',
+              height: 'clamp(60px, 8vh, 90px)',
+              borderRadius: 'clamp(25px, 3vw, 40px)',
               border: selectedVisualization === 'custom2' ? '4px solid #ffffff' : 'none',
               background: '#89ccffff',
-              fontSize: '2rem',
+              fontSize: 'clamp(1.2rem, 2vw, 2rem)',
               fontWeight: '700',
               fontFamily: '"Comic Sans MS", "Chalkboard SE", "Comic Neue", cursive',
               color: '#ffffffff',
@@ -1043,12 +1044,12 @@ export const Dashboard: React.FC = () => {
           <button
             onClick={() => setSelectedVisualization('custom3')}
             style={{
-              width: '280px',
-              height: '90px',
-              borderRadius: '40px',
+              width: 'clamp(180px, 20vw, 280px)',
+              height: 'clamp(60px, 8vh, 90px)',
+              borderRadius: 'clamp(25px, 3vw, 40px)',
               border: selectedVisualization === 'custom3' ? '4px solid #ffffff' : 'none',
               background: '#83fc9bff',
-              fontSize: '2rem',
+              fontSize: 'clamp(1.2rem, 2vw, 2rem)',
               fontWeight: '700',
               fontFamily: '"Comic Sans MS", "Chalkboard SE", "Comic Neue", cursive',
               color: '#ffffffff',
@@ -1128,18 +1129,7 @@ export const Dashboard: React.FC = () => {
               </div>
             )}
             {selectedVisualization === 'custom3' && (
-              <div style={{
-                width: '100%',
-                height: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                color: '#ffffff',
-                fontSize: '1.5rem',
-                fontWeight: '600'
-              }}>
-                Custom 3 Visualization - Coming Soon
-              </div>
+              <OversoldValueStocks selectedColor={selectedVisualization} />
             )}
           </div>
         </div>
