@@ -174,15 +174,18 @@ export const CattleSalesVisualization: React.FC<VisualizationProps> = ({ selecte
       height: '100%',
       display: 'flex',
       flexDirection: 'column',
-      padding: '2rem',
-      color: '#ffffff'
+      padding: 'clamp(0.5rem, 2%, 1.5rem)',
+      color: '#ffffff',
+      boxSizing: 'border-box',
+      overflow: 'auto'
     }}>
       {/* Title */}
       <div style={{
-        fontSize: '2rem',
+        fontSize: 'clamp(0.75rem, 1.5vw, 1.5rem)',
         fontWeight: '700',
-        marginBottom: '1rem',
-        textAlign: 'center'
+        marginBottom: 'clamp(0.25rem, 0.84%, 0.8rem)',
+        textAlign: 'center',
+        flexShrink: 0
       }}>
         Wisconsin Average Cattle Sales & Property Tax per Farm
       </div>
@@ -190,9 +193,11 @@ export const CattleSalesVisualization: React.FC<VisualizationProps> = ({ selecte
       {/* Legend */}
       <div style={{
         display: 'flex',
-        gap: '1.5rem',
+        gap: 'clamp(0.42rem, 1.25%, 1.2rem)',
         justifyContent: 'center',
-        marginBottom: '1rem'
+        marginBottom: 'clamp(0.25rem, 0.84%, 0.8rem)',
+        flexShrink: 0,
+        flexWrap: 'wrap'
       }}>
         <div style={{
           display: 'flex',
@@ -249,19 +254,21 @@ export const CattleSalesVisualization: React.FC<VisualizationProps> = ({ selecte
       {/* Toggle Buttons */}
       <div style={{
         display: 'flex',
-        gap: '1rem',
+        gap: 'clamp(0.25rem, 0.84%, 0.8rem)',
         justifyContent: 'center',
-        marginBottom: '1.5rem'
+        marginBottom: 'clamp(0.42rem, 1.25%, 1.2rem)',
+        flexShrink: 0,
+        flexWrap: 'wrap'
       }}>
         <button
           onClick={() => setSelectedAcreage('small')}
           style={{
-            padding: '0.75rem 1.5rem',
-            borderRadius: '8px',
-            border: selectedAcreage === 'small' ? '3px solid #ffffff' : '2px solid rgba(255, 255, 255, 0.5)',
+            padding: 'clamp(0.33rem, 0.84%, 0.6rem) clamp(0.5rem, 1.25%, 1.2rem)',
+            borderRadius: 'clamp(3.3px, 6.7px, 10px)',
+            border: selectedAcreage === 'small' ? '2px solid #ffffff' : '1px solid rgba(255, 255, 255, 0.5)',
             background: selectedAcreage === 'small' ? 'rgba(255, 255, 255, 0.3)' : 'rgba(255, 255, 255, 0.1)',
             color: '#ffffff',
-            fontSize: '1rem',
+            fontSize: 'clamp(0.59rem, 0.75vw, 0.95rem)',
             fontWeight: selectedAcreage === 'small' ? '700' : '500',
             cursor: 'pointer',
             transition: 'all 0.3s ease'
@@ -272,12 +279,12 @@ export const CattleSalesVisualization: React.FC<VisualizationProps> = ({ selecte
         <button
           onClick={() => setSelectedAcreage('medium')}
           style={{
-            padding: '0.75rem 1.5rem',
-            borderRadius: '8px',
-            border: selectedAcreage === 'medium' ? '3px solid #ffffff' : '2px solid rgba(255, 255, 255, 0.5)',
+            padding: 'clamp(0.33rem, 0.84%, 0.6rem) clamp(0.5rem, 1.25%, 1.2rem)',
+            borderRadius: 'clamp(3.3px, 6.7px, 10px)',
+            border: selectedAcreage === 'medium' ? '2px solid #ffffff' : '1px solid rgba(255, 255, 255, 0.5)',
             background: selectedAcreage === 'medium' ? 'rgba(255, 255, 255, 0.3)' : 'rgba(255, 255, 255, 0.1)',
             color: '#ffffff',
-            fontSize: '1rem',
+            fontSize: 'clamp(0.59rem, 0.75vw, 0.95rem)',
             fontWeight: selectedAcreage === 'medium' ? '700' : '500',
             cursor: 'pointer',
             transition: 'all 0.3s ease'
@@ -288,12 +295,12 @@ export const CattleSalesVisualization: React.FC<VisualizationProps> = ({ selecte
         <button
           onClick={() => setSelectedAcreage('large')}
           style={{
-            padding: '0.75rem 1.5rem',
-            borderRadius: '8px',
-            border: selectedAcreage === 'large' ? '3px solid #ffffff' : '2px solid rgba(255, 255, 255, 0.5)',
+            padding: 'clamp(0.33rem, 0.84%, 0.6rem) clamp(0.5rem, 1.25%, 1.2rem)',
+            borderRadius: 'clamp(3.3px, 6.7px, 10px)',
+            border: selectedAcreage === 'large' ? '2px solid #ffffff' : '1px solid rgba(255, 255, 255, 0.5)',
             background: selectedAcreage === 'large' ? 'rgba(255, 255, 255, 0.3)' : 'rgba(255, 255, 255, 0.1)',
             color: '#ffffff',
-            fontSize: '1rem',
+            fontSize: 'clamp(0.59rem, 0.75vw, 0.95rem)',
             fontWeight: selectedAcreage === 'large' ? '700' : '500',
             cursor: 'pointer',
             transition: 'all 0.3s ease'
@@ -307,8 +314,10 @@ export const CattleSalesVisualization: React.FC<VisualizationProps> = ({ selecte
       <div style={{
         flex: 1,
         display: 'flex',
-        gap: '2rem',
-        alignItems: 'stretch'
+        gap: 'clamp(0.42rem, 1.67%, 1.5rem)',
+        alignItems: 'stretch',
+        minHeight: 0,
+        overflow: 'auto'
       }}>
         {/* Left Column - Why */}
         <div style={{
@@ -316,10 +325,11 @@ export const CattleSalesVisualization: React.FC<VisualizationProps> = ({ selecte
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          padding: '1rem'
+          padding: 'clamp(0.25rem, 0.84%, 0.8rem)',
+          minWidth: 0
         }}>
           <h3 style={{
-            fontSize: '1.5rem',
+            fontSize: 'clamp(0.75rem, 1.08vw, 1.2rem)',
             fontWeight: '700',
             marginBottom: '1rem',
             marginTop: '0',
@@ -328,14 +338,14 @@ export const CattleSalesVisualization: React.FC<VisualizationProps> = ({ selecte
             Question
           </h3>
           <p style={{
-            fontSize: '1rem',
+            fontSize: 'clamp(0.74rem, 0.84vw, 0.9rem)',
             lineHeight: '1.6',
             opacity: 0.85
           }}>
             How does farm scale influence profitability in Wisconsin’s cattle industry in regards to property tax?
           </p>
           <h3 style={{
-            fontSize: '1.5rem',
+            fontSize: 'clamp(0.75rem, 1.08vw, 1.2rem)',
             fontWeight: '700',
             marginBottom: '1rem',
             marginTop: '2rem',
@@ -344,7 +354,7 @@ export const CattleSalesVisualization: React.FC<VisualizationProps> = ({ selecte
             Result
           </h3>
           <p style={{
-            fontSize: '1rem',
+            fontSize: 'clamp(0.74rem, 0.84vw, 0.9rem)',
             lineHeight: '1.6',
             opacity: 0.85
           }}>
@@ -363,10 +373,10 @@ export const CattleSalesVisualization: React.FC<VisualizationProps> = ({ selecte
             display: 'flex',
             alignItems: 'flex-end',
             justifyContent: 'center',
-            gap: '1rem',
-            padding: '1rem',
+            gap: 'clamp(0.56rem, 0.84vw, 1rem)',
+            padding: 'clamp(0.56rem, 0.84vw, 1rem)',
             borderBottom: '2px solid rgba(255, 255, 255, 0.5)',
-            minHeight: '250px',
+            minHeight: 'clamp(186px, 209px, 250px)',
             position: 'relative'
           }}>
             {normalizedCattleData.map((item, index) => {
@@ -402,7 +412,7 @@ export const CattleSalesVisualization: React.FC<VisualizationProps> = ({ selecte
                       alignItems: 'center'
                     }}>
                       <div style={{
-                        fontSize: '0.7rem',
+                        fontSize: 'clamp(0.55rem, 0.63vw, 0.7rem)',
                         fontWeight: '600',
                         marginBottom: '0.25rem',
                         opacity: 0.9,
@@ -445,7 +455,7 @@ export const CattleSalesVisualization: React.FC<VisualizationProps> = ({ selecte
                         position: 'relative'
                       }}>
                         <div style={{
-                          fontSize: '0.7rem',
+                          fontSize: 'clamp(0.55rem, 0.63vw, 0.7rem)',
                           fontWeight: '600',
                           marginBottom: '0.25rem',
                           opacity: 0.9,
@@ -493,9 +503,9 @@ export const CattleSalesVisualization: React.FC<VisualizationProps> = ({ selecte
                             transform: 'translateX(-50%)',
                             background: 'rgba(0, 0, 0, 0.9)',
                             color: '#ffffff',
-                            padding: '0.75rem',
+                            padding: 'clamp(0.5rem, 0.68vw, 0.75rem)',
                             borderRadius: '8px',
-                            fontSize: '0.75rem',
+                            fontSize: 'clamp(0.6rem, 0.68vw, 0.75rem)',
                             whiteSpace: 'nowrap',
                             zIndex: 1000,
                             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.5)',
@@ -525,7 +535,7 @@ export const CattleSalesVisualization: React.FC<VisualizationProps> = ({ selecte
                   {/* Year Label */}
                   <div style={{
                     marginTop: '0.5rem',
-                    fontSize: '0.95rem',
+                    fontSize: 'clamp(0.75rem, 0.86vw, 0.95rem)',
                     fontWeight: '600'
                   }}>
                     {item.YEAR}
@@ -545,7 +555,7 @@ export const CattleSalesVisualization: React.FC<VisualizationProps> = ({ selecte
           padding: '1rem'
         }}>
           <h3 style={{
-            fontSize: '1.5rem',
+            fontSize: 'clamp(0.75rem, 1.08vw, 1.2rem)',
             fontWeight: '700',
             marginBottom: '1rem',
             opacity: 0.95,
@@ -554,7 +564,7 @@ export const CattleSalesVisualization: React.FC<VisualizationProps> = ({ selecte
             Insights
           </h3>
           <p style={{
-            fontSize: '1rem',
+            fontSize: 'clamp(0.74rem, 0.84vw, 0.9rem)',
             lineHeight: '1.6',
             opacity: 0.85
           }}>

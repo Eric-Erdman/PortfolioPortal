@@ -213,12 +213,13 @@ export const Dashboard: React.FC = () => {
       {/* Large Diagonal Line in Bottom Left */}
       <div style={{
         position: 'absolute',
-        top: '78vh',
-        right: '75vw',
-        width: '31vw',
-        height: '8vh',
+        top: 'clamp(68vh, 75vh, 82vh)',
+        right: 'clamp(68vw, 73vw, 78vw)',
+        width: 'clamp(40vw, 52vw, 70vw)',
+        height: 'clamp(10vh, 14vh, 18vh)',
         zIndex: 2,
-        pointerEvents: 'none'
+        pointerEvents: 'none',
+        overflow: 'hidden'
       }}>
         <div style={{
           position: 'absolute',
@@ -230,19 +231,23 @@ export const Dashboard: React.FC = () => {
             ? '#89ccffff'
             : '#83fc9bff',
           transform: 'rotate(45deg)',
-          transition: 'background 0.5s ease'
+          transition: 'background 0.5s ease',
+          WebkitBackfaceVisibility: 'hidden',
+          backfaceVisibility: 'hidden',
+          willChange: 'transform'
         }} />
       </div>
 
       {/* Second Diagonal Line - customize position as needed */}
       <div style={{
         position: 'absolute',
-        top: '114vh',
-        right: '75vw',
-        width: '31vw',
-        height: '8vh',
+        top: 'clamp(102vh, 111vh, 118vh)',
+        right: 'clamp(68vw, 73vw, 78vw)',
+        width: 'clamp(40vw, 52vw, 70vw)',
+        height: 'clamp(10vh, 14vh, 18vh)',
         zIndex: 2,
-        pointerEvents: 'none'
+        pointerEvents: 'none',
+        overflow: 'hidden'
       }}>
         <div style={{
           position: 'absolute',
@@ -254,7 +259,10 @@ export const Dashboard: React.FC = () => {
             ? '#89ccffff'
             : '#83fc9bff',
           transform: 'rotate(-45deg)',
-          transition: 'background 0.5s ease'
+          transition: 'background 0.5s ease',
+          WebkitBackfaceVisibility: 'hidden',
+          backfaceVisibility: 'hidden',
+          willChange: 'transform'
         }} />
       </div>
       {/*Title Text along Green diagonal Stripe*/}
@@ -869,12 +877,13 @@ export const Dashboard: React.FC = () => {
         {/* Diagonal Lines - Bottom View */}
         <div style={{
           position: 'absolute',
-          top: '78vh',
-          right: '75vw',
-          width: '31vw',
-          height: '8vh',
+          top: 'clamp(68vh, 75vh, 82vh)',
+          right: 'clamp(68vw, 73vw, 78vw)',
+          width: 'clamp(40vw, 52vw, 70vw)',
+          height: 'clamp(10vh, 14vh, 18vh)',
           zIndex: 2,
-          pointerEvents: 'none'
+          pointerEvents: 'none',
+          overflow: 'hidden'
         }}>
           <div style={{
             position: 'absolute',
@@ -886,32 +895,14 @@ export const Dashboard: React.FC = () => {
               ? '#89ccffff'
               : '#83fc9bff',
             transform: 'rotate(45deg)',
-            transition: 'background 0.5s ease'
+            transition: 'background 0.5s ease',
+            WebkitBackfaceVisibility: 'hidden',
+            backfaceVisibility: 'hidden',
+            willChange: 'transform'
           }} />
         </div>
 
-        <div style={{
-          position: 'absolute',
-          top: '114vh',
-          right: '75vw',
-          width: '31vw',
-          height: '8vh',
-          zIndex: 2,
-          pointerEvents: 'none'
-        }}>
-          <div style={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            background: selectedVisualization === 'custom1'
-              ? '#ff909bff'
-              : selectedVisualization === 'custom2'
-              ? '#89ccffff'
-              : '#83fc9bff',
-            transform: 'rotate(-45deg)',
-            transition: 'background 0.5s ease'
-          }} />
-        </div>
+        
 
         {/* Up Arrow Button */}
         <div 
@@ -961,23 +952,23 @@ export const Dashboard: React.FC = () => {
         {/* Left side - Visualization selector buttons */}
         <div style={{
           position: 'absolute',
-          left: '8rem',
+          left: 'clamp(2rem, 8rem, 10rem)',
           top: '50%',
           transform: 'translateY(-50%)',
           display: 'flex',
           flexDirection: 'column',
-          gap: '1.5rem',
+          gap: 'clamp(1rem, 1.5rem, 2rem)',
           zIndex: 10
         }}>
           <button
             onClick={() => setSelectedVisualization('custom1')}
             style={{
-              width: 'clamp(180px, 20vw, 280px)',
-              height: 'clamp(60px, 8vh, 90px)',
-              borderRadius: 'clamp(25px, 3vw, 40px)',
-              border: selectedVisualization === 'custom1' ? '4px solid #ffffff' : 'none',
+              width: 'clamp(105px, 11vw, 250px)',
+              height: 'clamp(38px, 5vh, 85px)',
+              borderRadius: 'clamp(15px, 2vw, 35px)',
+              border: selectedVisualization === 'custom1' ? '3px solid #ffffff' : 'none',
               background: '#ff909bff',
-              fontSize: 'clamp(1.2rem, 2vw, 2rem)',
+              fontSize: 'clamp(0.85rem, 1.1vw, 1.8rem)',
               fontWeight: '700',
               fontFamily: '"Comic Sans MS", "Chalkboard SE", "Comic Neue", cursive',
               color: '#ffffffff',
@@ -1008,12 +999,12 @@ export const Dashboard: React.FC = () => {
           <button
             onClick={() => setSelectedVisualization('custom2')}
             style={{
-              width: 'clamp(180px, 20vw, 280px)',
-              height: 'clamp(60px, 8vh, 90px)',
-              borderRadius: 'clamp(25px, 3vw, 40px)',
-              border: selectedVisualization === 'custom2' ? '4px solid #ffffff' : 'none',
+              width: 'clamp(105px, 11vw, 250px)',
+              height: 'clamp(38px, 5vh, 85px)',
+              borderRadius: 'clamp(15px, 2vw, 35px)',
+              border: selectedVisualization === 'custom2' ? '3px solid #ffffff' : 'none',
               background: '#89ccffff',
-              fontSize: 'clamp(1.2rem, 2vw, 2rem)',
+              fontSize: 'clamp(0.85rem, 1.1vw, 1.8rem)',
               fontWeight: '700',
               fontFamily: '"Comic Sans MS", "Chalkboard SE", "Comic Neue", cursive',
               color: '#ffffffff',
@@ -1044,12 +1035,12 @@ export const Dashboard: React.FC = () => {
           <button
             onClick={() => setSelectedVisualization('custom3')}
             style={{
-              width: 'clamp(180px, 20vw, 280px)',
-              height: 'clamp(60px, 8vh, 90px)',
-              borderRadius: 'clamp(25px, 3vw, 40px)',
-              border: selectedVisualization === 'custom3' ? '4px solid #ffffff' : 'none',
+              width: 'clamp(105px, 11vw, 250px)',
+              height: 'clamp(38px, 5vh, 85px)',
+              borderRadius: 'clamp(15px, 2vw, 35px)',
+              border: selectedVisualization === 'custom3' ? '3px solid #ffffff' : 'none',
               background: '#83fc9bff',
-              fontSize: 'clamp(1.2rem, 2vw, 2rem)',
+              fontSize: 'clamp(0.85rem, 1.1vw, 1.8rem)',
               fontWeight: '700',
               fontFamily: '"Comic Sans MS", "Chalkboard SE", "Comic Neue", cursive',
               color: '#ffffffff',
@@ -1084,13 +1075,14 @@ export const Dashboard: React.FC = () => {
           justifyContent: 'center',
           alignItems: 'center',
           width: '100%',
-          maxWidth: '90vw'
+          maxWidth: '90vw',
+          padding: '0 clamp(1rem, 2vw, 3rem)'
         }}>
-          {/* Visualization Rectangle - Easily adjustable size */}
+          {/* Visualization Rectangle - Responsive for all screen sizes */}
           <div style={{
-            width: '65vw',  // ADJUST THIS: Change width (e.g., '70vw', '800px')
-            height: '55vh', // ADJUST THIS: Change height (e.g., '60vh', '600px')
-            borderRadius: '20px',
+            width: 'clamp(360px, 63vw, 1300px)',
+            height: 'clamp(360px, 54vh, 750px)',
+            borderRadius: 'clamp(12px, 20px, 24px)',
             background: selectedVisualization === 'custom1' 
               ? '#ff909bff' 
               : selectedVisualization === 'custom2'
@@ -1106,9 +1098,11 @@ export const Dashboard: React.FC = () => {
             justifyContent: 'center',
             alignItems: 'center',
             color: '#ffffff',
-            fontSize: '1.5rem',
+            fontSize: 'clamp(1rem, 1.5rem, 2rem)',
             fontWeight: '600',
-            fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+            fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+            overflow: 'hidden',
+            padding: 'clamp(0.5rem, 1rem, 1.5rem)'
           }}>
             {/* Render visualization based on selection */}
             {selectedVisualization === 'custom1' && (
