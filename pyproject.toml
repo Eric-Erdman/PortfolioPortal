@@ -1,0 +1,11 @@
+[project]
+name = "stock-screener-api"
+version = "1.0.0"
+requires-python = ">=3.11,<3.12"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.vercel]
+python-version = "3.11"
