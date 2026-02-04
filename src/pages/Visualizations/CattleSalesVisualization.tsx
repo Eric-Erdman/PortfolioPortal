@@ -183,7 +183,7 @@ export const CattleSalesVisualization: React.FC<VisualizationProps> = ({ selecte
       <div style={{
         fontSize: 'clamp(0.75rem, 1.5vw, 1.5rem)',
         fontWeight: '700',
-        marginBottom: 'clamp(0.25rem, 0.84%, 0.8rem)',
+        marginBottom: 'clamp(0.4rem, 1.2%, 1.2rem)',
         textAlign: 'center',
         flexShrink: 0
       }}>
@@ -195,7 +195,7 @@ export const CattleSalesVisualization: React.FC<VisualizationProps> = ({ selecte
         display: 'flex',
         gap: 'clamp(0.42rem, 1.25%, 1.2rem)',
         justifyContent: 'center',
-        marginBottom: 'clamp(0.25rem, 0.84%, 0.8rem)',
+        marginBottom: 'clamp(0.5rem, 1.4%, 1.4rem)',
         flexShrink: 0,
         flexWrap: 'wrap'
       }}>
@@ -256,7 +256,7 @@ export const CattleSalesVisualization: React.FC<VisualizationProps> = ({ selecte
         display: 'flex',
         gap: 'clamp(0.25rem, 0.84%, 0.8rem)',
         justifyContent: 'center',
-        marginBottom: 'clamp(0.42rem, 1.25%, 1.2rem)',
+        marginBottom: 'clamp(0.7rem, 1.8%, 1.8rem)',
         flexShrink: 0,
         flexWrap: 'wrap'
       }}>
@@ -348,7 +348,7 @@ export const CattleSalesVisualization: React.FC<VisualizationProps> = ({ selecte
             fontSize: 'clamp(0.75rem, 1.08vw, 1.2rem)',
             fontWeight: '700',
             marginBottom: '1rem',
-            marginTop: '2rem',
+            marginTop: '2.5rem',
             opacity: 0.95,
           }}>
             Result
@@ -412,7 +412,7 @@ export const CattleSalesVisualization: React.FC<VisualizationProps> = ({ selecte
                       alignItems: 'center'
                     }}>
                       <div style={{
-                        fontSize: 'clamp(0.55rem, 0.63vw, 0.7rem)',
+                        fontSize: 'clamp(0.45rem, 0.53vw, 0.8rem)',
                         fontWeight: '600',
                         marginBottom: '0.25rem',
                         opacity: 0.9,
@@ -575,7 +575,7 @@ export const CattleSalesVisualization: React.FC<VisualizationProps> = ({ selecte
 
       {/* Footer Info */}
       <div style={{
-        marginTop: '1.5rem',
+        marginTop: '2rem',
         textAlign: 'center',
         fontSize: '0.9rem',
         opacity: 0.8

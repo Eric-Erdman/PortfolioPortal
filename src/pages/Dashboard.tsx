@@ -963,9 +963,9 @@ export const Dashboard: React.FC = () => {
           <button
             onClick={() => setSelectedVisualization('custom1')}
             style={{
-              width: 'clamp(105px, 11vw, 250px)',
-              height: 'clamp(38px, 5vh, 85px)',
-              borderRadius: 'clamp(15px, 2vw, 35px)',
+              width: 'clamp(91px, 9.6vw, 217px)',
+              height: 'clamp(33px, 4.35vh, 74px)',
+              borderRadius: 'clamp(13px, 1.74vw, 30px)',
               border: selectedVisualization === 'custom1' ? '3px solid #ffffff' : 'none',
               background: '#ff909bff',
               fontSize: 'clamp(0.85rem, 1.1vw, 1.8rem)',
@@ -999,9 +999,9 @@ export const Dashboard: React.FC = () => {
           <button
             onClick={() => setSelectedVisualization('custom2')}
             style={{
-              width: 'clamp(105px, 11vw, 250px)',
-              height: 'clamp(38px, 5vh, 85px)',
-              borderRadius: 'clamp(15px, 2vw, 35px)',
+              width: 'clamp(91px, 9.6vw, 217px)',
+              height: 'clamp(33px, 4.35vh, 74px)',
+              borderRadius: 'clamp(13px, 1.74vw, 30px)',
               border: selectedVisualization === 'custom2' ? '3px solid #ffffff' : 'none',
               background: '#89ccffff',
               fontSize: 'clamp(0.85rem, 1.1vw, 1.8rem)',
@@ -1035,9 +1035,9 @@ export const Dashboard: React.FC = () => {
           <button
             onClick={() => setSelectedVisualization('custom3')}
             style={{
-              width: 'clamp(105px, 11vw, 250px)',
-              height: 'clamp(38px, 5vh, 85px)',
-              borderRadius: 'clamp(15px, 2vw, 35px)',
+              width: 'clamp(91px, 9.6vw, 217px)',
+              height: 'clamp(33px, 4.35vh, 74px)',
+              borderRadius: 'clamp(13px, 1.74vw, 30px)',
               border: selectedVisualization === 'custom3' ? '3px solid #ffffff' : 'none',
               background: '#83fc9bff',
               fontSize: 'clamp(0.85rem, 1.1vw, 1.8rem)',
@@ -1065,7 +1065,7 @@ export const Dashboard: React.FC = () => {
                 : '0 4px 15px rgba(191, 255, 204, 0.4)';
             }}
           >
-            Market Trends
+            In Progress
           </button>
         </div>
         
@@ -1081,7 +1081,7 @@ export const Dashboard: React.FC = () => {
           {/* Visualization Rectangle - Responsive for all screen sizes */}
           <div style={{
             width: 'clamp(360px, 63vw, 1300px)',
-            height: 'clamp(360px, 54vh, 750px)',
+            height: 'clamp(414px, 62.1vh, 862px)',
             borderRadius: 'clamp(12px, 20px, 24px)',
             background: selectedVisualization === 'custom1' 
               ? '#ff909bff' 
