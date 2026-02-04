@@ -1125,7 +1125,7 @@ export const Dashboard: React.FC = () => {
                 fontSize: '1.5rem',
                 fontWeight: '600'
               }}>
-                Custom 2 Visualization - Coming Soon
+                Custom 2 Visualization - Under Construction
               </div>
             )}
             {selectedVisualization === 'custom3' && (
