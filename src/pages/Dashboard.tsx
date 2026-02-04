@@ -1081,7 +1081,7 @@ export const Dashboard: React.FC = () => {
           {/* Visualization Rectangle - Responsive for all screen sizes */}
           <div style={{
             width: 'clamp(360px, 63vw, 1300px)',
-            height: 'clamp(414px, 62.1vh, 862px)',
+            height: 'clamp(414px, 68vh, 950px)',
             borderRadius: 'clamp(12px, 20px, 24px)',
             background: selectedVisualization === 'custom1' 
               ? '#ff909bff' 
